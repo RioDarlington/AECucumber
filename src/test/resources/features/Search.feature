@@ -11,7 +11,7 @@ Feature: This feature will register and delete an account.
     And Verify page title is visible "Automation Exercise - Signup"
     And Enter details:
     |Mr|
-    |Dave123!|
+    |PASSWORD!|
     |02/02/2007|
     And Select checkbox "Sign up for our newsletter!"
     And Select checkbox "Receive special offers from our partners!"
