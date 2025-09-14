@@ -1,0 +1,10 @@
+String firstName, String lastName, String company, String address1, String address2, String country, String state, String city, String zipcode, String mobileNumber
+
+
+And Verify page title is visible ""
+And Click on "Delete Account" button
+And Verify page title is visible ""
+And Click on "Continue" button
+
+
+taskkill /IM chromedriver.exe /F

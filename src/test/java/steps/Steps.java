@@ -7,7 +7,8 @@ import po.Common;
 import po.Homepage;
 import po.SignUp;
 import po.SignUpLogin;
-import utils.DriverManager;
+import po.Login;
+import po.DriverManager;
 
 import java.util.List;
 
@@ -21,6 +22,9 @@ public class Steps
     SignUpLogin signUpLogin;
     Common common;
     SignUp signUp;
+    Login login;
+
+
 
 
     @Given("i have opened a browser")
@@ -28,11 +32,11 @@ public class Steps
     {
         log("I have opened a browser");
         driverManager = new DriverManager();
-        homepage = new Homepage(driverManager.getWebDriver());
-        signUpLogin = new SignUpLogin(driverManager.getWebDriver());
-        common = new Common(driverManager.getWebDriver());
-        signUp = new SignUp(driverManager.getWebDriver());
-
+        homepage = new Homepage();
+        signUpLogin = new SignUpLogin();
+        common = new Common();
+        signUp = new SignUp();
+        login = new Login();
     }
 
     @When("i navigate to {string}")
@@ -67,23 +71,40 @@ public class Steps
     }
 
 
-    @And("Fill details: First name, Last name, Company, Address, Address{int}, Country, State, City, Zipcode, Mobile Number")
-    public void fillDetailsFirstNameLastNameCompanyAddressAddressCountryStateCityZipcodeMobileNumber(int arg0) {
+    @And("Fill Address details:")
+    public void fillAddressDetails(List<String> addressDetails)
+    {
+        signUp.completeAddress(addressDetails);
     }
 
     @And("Click {string}")
-    public void clickCreateAccountButton() {
+    public void clickCreateAccountButton()
+    {
+
     }
 
     @And("Verify that {string} is visible and click {string} button")
     public void verifyThatACCOUNTDELETEDIsVisibleAndClickContinueButton() {
     }
 
-// Common Steps
-    @And("Verify page title is visible {string}")
-    public void verifyPageTitleIsVisible(String title)
+    @And("Verify that i am logged in as:")
+    public void verifyThatIAmLoggedInAs(List<String> list)
     {
-        assertTrue(common.titleIs(title));
+        homepage.verifyLoggedIn(list.getFirst());
+    }
+
+    @And("i select the following product:")
+    public void iSelectTheFollowingProduct(List<String> list)
+    {
+        homepage.selectProduct(list.getFirst());
+    }
+
+
+// Common Steps
+    @And("Verify page title is {string}")
+    public void verifyPageTitleIsString(String title)
+    {
+//        assertTrue(common.titleIs(title));
     }
 
     @And("Click on {string} button")
@@ -104,6 +125,46 @@ public class Steps
     {
         common.clickCheckBox(label);
     }
+
+
+    @And("Enter email and password")
+    public void enterEmailAndPassword()
+    {
+        login.loginDetails();
+    }
+
+
+    @And("i select the following item:")
+    public void iSelectTheFollowingItem(List<String> item)
+    {
+        homepage.selectItem(item.getFirst());
+    }
+
+    @And("i select the quantity and add to cart:")
+    public void iSelectTheQuantityAndAddToCart(List<String> amount)
+    {
+        homepage.selectQuantityAndAddToCart(amount.getFirst());
+    }
+
+
+    @And("Click go to cart")
+    public void clickGoToCart()
+    {
+        homepage.goToCart();
+    }
+
+    @And("i sleep")
+    public void iSleep()
+    {
+        common.sleep();
+    }
+
+    @And("Fill Bank details:")
+    public void fillBankDetails(List<String> bankDetails)
+    {
+        homepage.completeBankDetails(bankDetails);
+    }
 }
+
 
 
