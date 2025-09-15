@@ -49,13 +49,6 @@ Feature: This feature will register and delete an account.
       |2|
     And i select the quantity and add to cart:
       |5|
-    And Click on "Continue Shopping" button
-    And Click on " Products" link
-    And i sleep
-    And i select the following item:
-      |4|
-    And i select the quantity and add to cart:
-      |2|
     And Click go to cart
     And Click on "Proceed To Checkout" link
     And Click on "Place Order" link

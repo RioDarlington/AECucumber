@@ -9,11 +9,6 @@ import static org.junit.Assert.assertTrue;
 public class Common extends DriverManager
 {
 
-    public boolean titleIs(String title)
-    {
-        return webDriver.getTitle().equals(title);
-
-    }
     public void sleep()
     {
         try
